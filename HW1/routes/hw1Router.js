@@ -3,14 +3,15 @@ var router = express.Router();
 
 //res.render or res.send breaks the chain of looking for pattern matching.
 
-/* GET constant JSON object */
-router.get('/hw1', function(req, res, next) {
-    res.render('hw1', { title: 'Hey now' });
+/* GET constant JSON object  */
+router.get('/', function(req, res) {
+    res.json({ string: 'Hey now' });
 });
 
 /* POST the URL string */
-router.post('/hw1', function(req, res, next) {
-    res.render('hw1', 'respond with a resource');
+router.post('/', function(req, res) {
+    const input = req.body;
+    res.json({ body: input});
 });
 
 module.exports = router; //gives access to app.js

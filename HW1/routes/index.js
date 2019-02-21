@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
+//This '/' path is relative to the routing from app.js
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
