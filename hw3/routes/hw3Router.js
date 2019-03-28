@@ -1,27 +1,41 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const request = require('request');
+const bodyParser = require('body-parser');
+const util = require('util');
+let path = require('path');
+
+let app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.set('view engine', 'ejs')
 
 //res.render or res.send breaks the chain of looking for pattern matching.
 
 /* GET constant JSON object  */
-router.get('/', function(req, res) {
-    let url = 'https://api.linkedin.com/v1/companies/1337/updates?start=20&count=10&format=json';
+app.get('/', function(req, res) {
+    let url = 'https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=70edd79e9171414db7e92ceef59dab1b';
 
 
     const getAPICall = util.promisify(request);
 
     getAPICall(url).then(data => {
         let content = JSON.parse(data.body);
-        //console.log(("joke: ", content.articles));
-        //res.render(content.articles);
-        const queryPath = (path.join(__dirname , '../views' ,'query.html'));
+
+        const queryPath = (path.join(__dirname , '../views' ,'query'));
         console.log(content);
         res.render(queryPath, {
-            title1: 'hi',
-
+            title0: content.articles[0].title,
+            title1: content.articles[1].title,
+            title2: content.articles[2].title,
+            title3: content.articles[3].title,
+            title4: content.articles[4].title
         });
 
     }).catch(err => console.log('error: ' , err))
+
 });
 
-module.exports = router; //gives access to app.js
+app.listen(8008, () => console.log('Server ready'))
+
+//module.exports = app; //gives access to app.js
