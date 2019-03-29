@@ -7,15 +7,22 @@ let path = require('path');
 let app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
-
 app.set('view engine', 'ejs')
+
+//any references to linkedin are because i couldn't get that api to work! now using news api.
 
 //res.render or res.send breaks the chain of looking for pattern matching.
 
 /* GET constant JSON object  */
 app.get('/', function(req, res) {
-    let url = 'https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=70edd79e9171414db7e92ceef59dab1b';
+    //for reading config file
+    const fs = require('fs');
+    const configPath = (path.join(__dirname , '../config' ,'config.json'));
+    const rawdata = fs.readFileSync(configPath);
+    const api_json = JSON.parse(rawdata);
+    const news_api_key = api_json['api-keys']['News-Api-Key'];
 
+    let url = 'https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=' + news_api_key;
 
     const getAPICall = util.promisify(request);
 
