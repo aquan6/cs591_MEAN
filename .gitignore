@@ -7,3 +7,8 @@
 # node modules #
 ######################
 node_modules/
+
+
+# config file containing api keys #
+######################
+config.json
