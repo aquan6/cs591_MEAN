@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1113b900-50e1-429f-aaf6-841a2bdbfaf3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../hw4/src/app/profile.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hw4/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../hw4/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hw4/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../hw4/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hw4/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../hw4/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hw4/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../hw4/src/styles.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -172,10 +177,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7569000" />
+    <option name="totallyTimeSpent" value="7778000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="56" y="23" width="1224" height="777" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19783874" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
