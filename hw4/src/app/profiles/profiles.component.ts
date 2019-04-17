@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Profile } from '../profile';
+import { PROFILES } from '../mock-profiles';
 
 @Component({
   selector: 'app-profiles',
@@ -12,6 +13,8 @@ export class ProfilesComponent implements OnInit {
     name: 'Andy Quan',
     city: 'Boston',
   };
+
+  profiles = PROFILES;
 
   constructor() { }
 
