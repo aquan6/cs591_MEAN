@@ -1,16 +1,28 @@
-<h2>{{profile.name}}'s Details</h2>
+<h2>Add Profiles</h2>
 <div>
   <label>name:
-    <input [(ngModel)]="profile.name" placeholder="name"/>
+    <input #profileName />
   </label>
-</div>
-<div>
-<label>name:
-  <input [(ngModel)]="profile.city" placeholder="city"/>
-</label>
+  <br>
+  <label>city:
+    <input #profileCity />
+  </label>
+  <br>
+  <br>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(profileName.value, profileCity.value); profileName.value=''; profileCity.value=''">
+    add
+  </button>
 </div>
 
-<h2>My Heroes</h2>
-<ul class="heroes">
-  <li *ngFor="let profile.name of profiles">
+<h2>All Profiles</h2>
+<ul class="profiles">
+  <li *ngFor="let profile of profiles"
+      [class.selected]="profile === selectedProfile"
+      (click)="onSelect(profile)">
+    <span class="badge">{{profile.name}} from {{profile.city}}</span>
+  </li>
 </ul>
+
+<app-profile-detail [profile]="selectedProfile"></app-profile-detail>
+

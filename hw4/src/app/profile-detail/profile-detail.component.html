@@ -1,0 +1,14 @@
+<div *ngIf="profile">
+
+  <h2>{{profile.name | uppercase}}'s Details</h2>
+  <div>
+    <label>name:
+      <input [(ngModel)]="profile.name" placeholder="name"/>
+    </label>
+    <br>
+    <label>city:
+      <input [(ngModel)]="profile.city" placeholder="city"/>
+    </label>
+  </div>
+
+</div>
