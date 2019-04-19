@@ -1,9 +1,6 @@
 import {Component, OnInit, Input, enableProdMode} from '@angular/core';
 import { Profile } from '../profile';
-import {HttpClient, HttpEvent} from '@angular/common/http';
-
-
-
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-profile-detail',
@@ -21,13 +18,9 @@ export class ProfileDetailComponent implements OnInit {
     if ( !city) { return; }
 
     // todo: put this key in config file
-    const url = 'https://newsapi.org/v2/everything?q=' + city + '&apiKey=' + '70edd79e9171414db7e92ceef59dab1b';
-
+    const url = 'http://localhost:8008/';
     console.log(url);
-    const articles = this.httpClient.get(url);
-    console.log(articles);
-
-
+    console.log(this.httpClient.get(url));
   }
 
   constructor() { }
