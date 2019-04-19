@@ -7,8 +7,13 @@
     </label>
     <br>
     <label>city:
-      <input [(ngModel)]="profile.city" placeholder="city"/>
+      <input #profileCity [(ngModel)]="profile.city" placeholder="city"/>
     </label>
+    <br> <br>
+    <button (click)="getNews(profileCity.value)" >
+      Get News!
+    </button>
+
   </div>
 
 </div>

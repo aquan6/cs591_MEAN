@@ -20,7 +20,7 @@ app.get('/', function(req, res) {
     const configPath = (path.join(__dirname , '../config' ,'config.json'));
     const rawdata = fs.readFileSync(configPath);
     const api_json = JSON.parse(rawdata);
-    const news_api_key = api_json['api-keys']['News-Api-Key'];
+        const news_api_key = api_json['api-keys']['News-Api-Key'];
 
     let url = 'https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=' + news_api_key;
 
