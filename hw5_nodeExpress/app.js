@@ -1,14 +1,92 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+let createError = require('http-errors');
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+let indexRouter = require('./routes/index');
+let usersRouter = require('./routes/users');
 const hw3Router = require('./routes/hw3Router');
 
-var app = express();
+let app = express();
+
+//setup oauth
+let passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const config = require('./config/config');
+const User = require('./database/nearmedb');
+
+passport.use(
+    new GoogleStrategy({
+          callbackURL: '/auth/google/redirect',
+          clientID: config.google.clientID,
+          clientSecret: config.google.clientSecret
+        }, (token, refreshToken, profile, done) => {
+          User.findOne({'id': profile.id},
+              function(err, user) {
+                if (!user) {
+                  user = new User({
+                    id: profile.id,
+                    name: profile.displayName,
+                    email: profile.emails[0].value,
+                    favorites: []
+
+                  })
+                  user.save(function(err) {
+                    if (err) console.log(err);
+                    return done(err, user);
+                  })
+                }
+                else {
+                  return done(err, user);
+                }
+              })
+        }
+    )
+);
+
+app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(cookieSession({
+    name: 'session',
+    keys: ['fuh4t87yrhf'],
+    maxAge: 24 * 60 * 60 * 1000
+}));
+
+
+passport.serializeUser(function(user, cb) {
+  cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
+
+//routes for oauth
+app.get('/',
+    function(req, res){
+      res.render('../views/query', { user: req.user });
+    });
+
+
+app.get('/logout', (req, res) => {
+  req.logout();
+  req.session = null;
+  res.render('../views/query');
+});
+
+app.get('/auth/google', passport.authenticate('google', {
+  scope: ['https://www.googleapis.com/auth/userinfo.profile', 'https://www.googleapis.com/auth/userinfo.email']
+}));
+
+app.get('/auth/google/redirect', passport.authenticate('google', {
+      failureRedirect: '/login'}),
+    (req, res) => {
+      req.session.token = req.user.token;
+      res.redirect('/homepage');
+    }
+);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
