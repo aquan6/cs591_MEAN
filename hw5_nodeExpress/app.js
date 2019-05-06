@@ -3,10 +3,12 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+
 let app = express();
 
 //setup oauth
 let passport = require('passport');
+let cookieSession = require('cookie-session');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const config = require('./config/config');
 const User = require('./database/db');

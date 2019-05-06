@@ -43,6 +43,4 @@ app.get('/', function(req, res) {
 
 });
 
-app.listen(8008, () => console.log('Server ready'))
-
 //module.exports = app; //gives access to app.js
