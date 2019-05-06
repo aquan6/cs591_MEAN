@@ -14,7 +14,7 @@ let app = express();
 let passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const config = require('./config/config');
-const User = require('./database/nearmedb');
+const User = require('./database/db');
 
 passport.use(
     new GoogleStrategy({
