@@ -1,0 +1,28 @@
+<h2>Add Profiles</h2>
+<div>
+  <label>name:
+    <input #profileName />
+  </label>
+  <br>
+  <label>city:
+    <input #profileCity />
+  </label>
+  <br>
+  <br>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(profileName.value, profileCity.value); profileName.value=''; profileCity.value=''">
+    add
+  </button>
+</div>
+
+<h2>All Profiles</h2>
+<ul class="profiles">
+  <li *ngFor="let profile of profiles"
+      [class.selected]="profile === selectedProfile"
+      (click)="onSelect(profile)">
+    <span class="badge">{{profile.name}} from {{profile.city}}</span>
+  </li>
+</ul>
+
+<app-profile-detail [profile]="selectedProfile"></app-profile-detail>
+
