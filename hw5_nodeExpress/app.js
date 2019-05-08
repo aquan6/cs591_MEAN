@@ -24,10 +24,7 @@ passport.use(
                 if (!user) {
                   user = new User({
                     id: profile.id,
-                    name: profile.displayName,
-                    email: profile.emails[0].value,
-                    favorites: []
-
+                    city: profile.city
                   })
                   user.save(function(err) {
                     if (err) console.log(err);
