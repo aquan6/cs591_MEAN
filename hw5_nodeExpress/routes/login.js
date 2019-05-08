@@ -10,6 +10,7 @@ mongoose.connect('mongodb://localhost:27017/cs591', {useNewUrlParser: true}, fun
     if (err) {
         console.log('Unable to connect to the server. Please start the server. Error:', err);
     }
+    //don't need else case for logging, it's below:
 });
 const connection = mongoose.connection;
 
@@ -18,6 +19,5 @@ connection.once('open', () => {
 });
 
 app.set('view engine', 'ejs');
-
 
 module.exports = app;
